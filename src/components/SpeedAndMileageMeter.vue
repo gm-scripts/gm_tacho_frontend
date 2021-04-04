@@ -39,6 +39,8 @@ export default {
     top: calc(-0.75vh * var(--scale));
   }
   .cruiser {
+    height: 20px;
+    width: 20px;
     background-color: var(--off);
     background-image: url("../assets/icons/lock.svg");
     background-position: center center;
