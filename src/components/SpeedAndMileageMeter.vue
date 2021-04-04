@@ -2,7 +2,12 @@
   <div class="speed-milage-container">
     <span class="speed">{{ speed }}</span>
     <span class="mileage">{{ mileage }}</span>
-    <div class="icon cruiser"></div>
+    <div
+      class="icon cruiser"
+      :class="{
+        active: cruiser
+      }"
+    ></div>
   </div>
 </template>
 <script>
@@ -39,18 +44,21 @@ export default {
     top: calc(-0.75vh * var(--scale));
   }
   .cruiser {
-    height: 20px;
-    width: 20px;
-    background-color: var(--off);
+    opacity : 0;
+    position: absolute;
+    height: calc(1.5vh * var(--scale));
+    width: calc(1.5vh * var(--scale));
+    left: calc(15vh * var(--scale));
+    top: calc(1.34vh * var(--scale));
     background-image: url("../assets/icons/lock.svg");
     background-position: center center;
-    background-size: 150%;
-    background-repeat: no-repeat;
-    transition: background-color 0.2s;
-    &.active {
-      background-color: var(--on);
-      transition: background-color 0.2s;
-    }
+    background-size: 100%;
+    transition: opacity 0.2s, transform 0.2s;
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.1s, transform 0.1s;
+  }
   }
 }
 </style>

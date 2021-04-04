@@ -78,7 +78,7 @@ export default {
         blinkerRight: true,
         frontLightMode: "high",
         gearShift: "0",
-        cruiser: true,
+        cruiser: false,
         fuelValue: 0.2,
       },
     };
