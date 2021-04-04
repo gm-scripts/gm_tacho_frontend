@@ -5,6 +5,19 @@
 ```js
 postMessage({
   type: "values",
+  visible: true,
+  speedometerGaugeVal: 0.8,
+  displaySpeed: "20 km/h",
+  mileage: "260km",
+  seatBeltActive: false,
+  blinkerLeft: false,
+  blinkerRight: false,
+  frontLightMode: "off",
+  gearShift: "6",
+  fuelValue: 0.2,
+});
+postMessage({
+  type: "values",
   speedometerGaugeVal: 0.8,
   displaySpeed: "20 km/h",
   mileage: "260km",

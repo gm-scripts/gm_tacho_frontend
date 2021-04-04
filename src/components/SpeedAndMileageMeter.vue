@@ -1,8 +1,8 @@
 <template>
   <div class="speed-milage-container">
-    <span class="speed">{{ speed }}</span
-    >
+    <span class="speed">{{ speed }}</span>
     <span class="mileage">{{ mileage }}</span>
+    <div class="icon cruiser"></div>
   </div>
 </template>
 <script>
@@ -11,6 +11,7 @@ export default {
   props: {
     speed: String,
     mileage: String,
+    cruiser: Boolean,
   },
 };
 </script>
@@ -36,6 +37,18 @@ export default {
     width: calc(#{$text-width} * var(--scale));
     position: relative;
     top: calc(-0.75vh * var(--scale));
+  }
+  .cruiser {
+    background-color: var(--off);
+    background-image: url("../assets/icons/lock.svg");
+    background-position: center center;
+    background-size: 150%;
+    background-repeat: no-repeat;
+    transition: background-color 0.2s;
+    &.active {
+      background-color: var(--on);
+      transition: background-color 0.2s;
+    }
   }
 }
 </style>

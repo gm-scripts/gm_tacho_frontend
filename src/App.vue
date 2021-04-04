@@ -1,31 +1,37 @@
 <template>
-  <div
-    id="tacho-container"
-    v-if="visible"
-    :style="{
-      '--scale': cssConfigs.scale,
-      '--bg-gauge': cssConfigs.bgGauge,
-      '--speedometer-color': cssConfigs.speedometerColor,
-      '--color-primary': cssConfigs.colorPrimary,
-      '--light-on': cssConfigs.lightOn,
-      '--light-off': cssConfigs.lightOff,
-      '--on': cssConfigs.on,
-      '--off': cssConfigs.off,
-      '--fuel-color': cssConfigs.fuelColor,
-      '--frontlight-off': cssConfigs.frontlightOff,
-    }"
-  >
-    <TachoBar :status="data.speedometerGaugeVal" />
-    <SpeedMile :speed="data.displaySpeed" :mileage="data.mileage" />
-    <div id="iconbar">
-      <SeatBelt :active="data.seatBeltActive" />
-      <Blinker :inverse="true" :active="data.blinkerLeft" />
-      <GearShift :shiftValue="data.gearShift" />
-      <Blinker :inverse="false" :active="data.blinkerRight" />
-      <FrontLight :mode="data.frontLightMode" />
+  <transition name="fade">
+    <div
+      id="tacho-container"
+      v-if="visible"
+      :style="{
+        '--scale': cssConfigs.scale,
+        '--bg-gauge': cssConfigs.bgGauge,
+        '--speedometer-color': cssConfigs.speedometerColor,
+        '--color-primary': cssConfigs.colorPrimary,
+        '--light-on': cssConfigs.lightOn,
+        '--light-off': cssConfigs.lightOff,
+        '--on': cssConfigs.on,
+        '--off': cssConfigs.off,
+        '--fuel-color': cssConfigs.fuelColor,
+        '--frontlight-off': cssConfigs.frontlightOff,
+      }"
+    >
+      <TachoBar :status="data.speedometerGaugeVal" />
+      <SpeedMile
+        :speed="data.displaySpeed"
+        :mileage="data.mileage"
+        :cruiser="data.cruiser"
+      />
+      <div id="iconbar">
+        <SeatBelt :active="data.seatBeltActive" />
+        <Blinker :inverse="true" :active="data.blinkerLeft" />
+        <GearShift :shiftValue="data.gearShift" />
+        <Blinker :inverse="false" :active="data.blinkerRight" />
+        <FrontLight :mode="data.frontLightMode" />
+      </div>
+      <FuelGauge :fuelValue="data.fuelValue" />
     </div>
-    <FuelGauge :fuelValue="data.fuelValue" />
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -72,6 +78,7 @@ export default {
         blinkerRight: true,
         frontLightMode: "high",
         gearShift: "0",
+        cruiser: true,
         fuelValue: 0.2,
       },
     };
@@ -103,6 +110,7 @@ export default {
           this.data.blinkerRight = data.blinkerRight;
           this.data.frontLightMode = data.frontLightMode;
           this.data.gearShift = data.gearShift;
+          this.data.cruiser = data.cruiser;
           this.data.fuelValue = data.fuelValue;
           break;
         }
@@ -117,9 +125,18 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background: #2c2c2c;
 }
 * {
   box-sizing: border-box;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-to,
+.fade-leave-to {
+  opacity: 0;
 }
 #tacho-container {
   --scale: 1.5;
