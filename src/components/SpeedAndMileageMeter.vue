@@ -5,7 +5,7 @@
     <div
       class="icon cruiser"
       :class="{
-        active: cruiser
+        active: cruiser,
       }"
     ></div>
   </div>
@@ -44,7 +44,7 @@ export default {
     top: calc(-0.75vh * var(--scale));
   }
   .cruiser {
-    opacity : 0;
+    opacity: 0;
     position: absolute;
     height: calc(1.5vh * var(--scale));
     width: calc(1.5vh * var(--scale));
@@ -53,12 +53,13 @@ export default {
     background-image: url("../assets/icons/lock.svg");
     background-position: center center;
     background-size: 100%;
-    transition: opacity 0.2s, transform 0.2s;
-  &.active {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.1s, transform 0.1s;
-  }
+    transform: scale(1.25);
+    transition: opacity 0.75s, transform 0.75s;
+    &.active {
+      opacity: 1;
+      transform: scale(1.01);
+      transition: opacity 0.5s, transform 0.5s;
+    }
   }
 }
 </style>
